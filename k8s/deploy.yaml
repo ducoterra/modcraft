@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-1-15-1
+spec:
+  selector:
+    matchLabels:
+      app: minecraft-1-15-1
+  template:
+    metadata:
+      labels:
+        app: minecraft-1-15-1
+    spec:
+      containers:
+      - name: minecraft-1-15-1
+        image: ducoterra/minecraft_1.15.1:0.0.1
+        resources:
+          requests:
+            memory: 1Mi
+            cpu: 1m
+          limits:
+            memory: "16Gi"
+            cpu: "4"
+        ports:
+        - containerPort: 25565
+        volumeMounts:
+          - mountPath: /minecraft/world
+            name: world
+          - mountPath: /minecraft/logs
+            name: logs
+        tty: true
+        stdin: true
+        command:
+          - "bash"
+          - "-c"
+          - "java -Xmx4096M -Xms1024M -XX:ParallelGCThreads=2 -jar server.jar nogui"
+      volumes:
+        - name: world
+          persistentVolumeClaim:
+            claimName: minecraft-1-15-1-world
+        - name: logs
+          persistentVolumeClaim:
+            claimName: minecraft-1-15-1-logs
