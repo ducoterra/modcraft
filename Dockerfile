@@ -1,7 +1,9 @@
-FROM openjdk:latest
+FROM openjdk:8-slim
 
 WORKDIR /mc_server
-COPY ./server .
+COPY server .
+RUN java -jar forge-1.12.2-14.23.5.2847-installer.jar --installServer && rm forge-1.12.2-14.23.5.2847-installer.jar
+COPY mods ./mods
 
 WORKDIR /mc_data
-CMD cp -r /mc_server/* . && java -Xmx1024M -Xms1024M -XX:ParallelGCThreads=2 -jar server.jar nogui
+CMD rm -rf mods && cp -r /mc_server/* . && java -Xmx"$MAX_RAM"G -Xms"$MIN_RAM"G -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
