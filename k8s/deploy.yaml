@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: minecraft-1-12-2
-        image: ducoterra/modcraft_1.12.2:0.0.11
+        image: ducoterra/modcraft_1.12.2:0.0.13
         resources:
           requests:
             memory: 1Mi
