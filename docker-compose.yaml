@@ -3,17 +3,14 @@ version: '3'
 services:
   mc:
     build: .
-    image: ducoterra/modcraft_1.12.2:0.0.13
+    image: ducoterra/modcraft_1.12.2:0.0.14
     ports:
       - 25565:25565
     volumes:
-      - data:/mc_data
+      - ./data:/mc_data
     tty: true
     stdin_open: true
     environment: 
       - MAX_RAM=2
       - MIN_RAM=1
     restart: always
-
-volumes:
-  data:

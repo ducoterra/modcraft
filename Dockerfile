@@ -4,6 +4,9 @@ WORKDIR /mc_server
 COPY server .
 RUN java -jar forge-1.12.2-14.23.5.2847-installer.jar --installServer && rm forge-1.12.2-14.23.5.2847-installer.jar
 COPY mods ./mods
-
 WORKDIR /mc_data
-CMD rm -rf mods && cp -r /mc_server/* . && java -Xmx"$MAX_RAM"G -Xms"$MIN_RAM"G -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
+
+# 1. Remove the old mods folder and replace with new mods
+# 2. Copy files only if they don't yet exist (server.jar, server.properties, etc)
+# 3. Start the server
+CMD rm -rf mods && for file in $(ls /mc_server); do if test ! -s $file; then echo "copying $file" && cp -r /mc_server/$file .; fi; done && java -Xmx"$MAX_RAM"G -Xms"$MIN_RAM"G -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
