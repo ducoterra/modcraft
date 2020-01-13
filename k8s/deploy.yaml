@@ -13,7 +13,21 @@ spec:
     spec:
       containers:
       - name: minecraft-1-12-2
-        image: ducoterra/modcraft_1.12.2:0.0.13
+        image: ducoterra/modcraft_1.12.2:0.0.14
+        ports:
+        - containerPort: 25565
+        volumeMounts:
+        - mountPath: /mc_data
+          name: data
+        tty: true
+        stdin: true
+        env:
+        - name: MAX_RAM
+          value: "16"
+        - name: MIN_RAM
+          value: "1"
+        - name: THREADS
+          value: "4"
         resources:
           requests:
             memory: 1Mi
@@ -21,19 +35,7 @@ spec:
           limits:
             memory: "16Gi"
             cpu: "4"
-        ports:
-        - containerPort: 25565
-        volumeMounts:
-          - mountPath: /mc_data
-            name: data
-        tty: true
-        stdin: true
-        env:
-          - name: MAX_RAM
-            value: "8"
-          - name: MIN_RAM
-            value: "1"
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: minecraft-1-12-2
+      - name: data
+        persistentVolumeClaim:
+          claimName: minecraft-1-12-2

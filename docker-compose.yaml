@@ -13,4 +13,5 @@ services:
     environment: 
       - MAX_RAM=2
       - MIN_RAM=1
+      - THREADS=2
     restart: always
