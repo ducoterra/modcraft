@@ -5,9 +5,10 @@ COPY server .
 RUN java -jar forge-1.12.2-14.23.5.2847-installer.jar --installServer && rm forge-1.12.2-14.23.5.2847-installer.jar
 COPY mods ./mods
 
-RUN groupadd -r minecraft && useradd --no-log-init -r -g minecraft minecraft
-USER minecraft
 WORKDIR /mc_data
+RUN groupadd -r minecraft && useradd --no-log-init -r -g minecraft minecraft
+RUN chown -R minecraft:minecraft .
+USER minecraft
 # 1. Remove the old mods folder and replace with new mods
 # 2. Copy files only if they don't yet exist (server.jar, server.properties, etc)
 # 3. Start the server

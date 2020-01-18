@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: minecraft-1-12-2
-        image: ducoterra/modcraft_1.12.2:0.0.14
+        image: ducoterra/modcraft_1.12.2:0.0.16
         ports:
         - containerPort: 25565
         volumeMounts:
@@ -23,7 +23,7 @@ spec:
         stdin: true
         env:
         - name: MAX_RAM
-          value: "16"
+          value: "12"
         - name: MIN_RAM
           value: "1"
         - name: THREADS
@@ -33,7 +33,7 @@ spec:
             memory: 1Mi
             cpu: 1m
           limits:
-            memory: "16Gi"
+            memory: "12Gi"
             cpu: "4"
       volumes:
       - name: data

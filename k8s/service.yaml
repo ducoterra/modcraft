@@ -6,8 +6,6 @@ spec:
   selector:
     app: minecraft-1-12-2
   ports:
-  - port: 25567
+  - port: 25566
     targetPort: 25565
-  type: NodePort
-  externalIPs:
-    - 3.14.1.101
+  type: LoadBalancer
