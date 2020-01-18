@@ -6,7 +6,7 @@ RUN java -jar forge-1.12.2-14.23.5.2847-installer.jar --installServer && rm forg
 COPY mods ./mods
 
 WORKDIR /mc_data
-RUN groupadd -r minecraft && useradd --no-log-init -r -g minecraft minecraft
+RUN groupadd -r minecraft && useradd --no-log-init -m -r -g minecraft minecraft
 RUN chown -R minecraft:minecraft .
 USER minecraft
 # 1. Remove the old mods folder and replace with new mods
