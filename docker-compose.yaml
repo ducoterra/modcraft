@@ -3,7 +3,7 @@ version: '3'
 services:
   mc:
     build: .
-    image: ducoterra/modcraft_1.12.2:0.19
+    image: ducoterra/modcraft_1.12.2:0.20
     ports:
       - 25565:25565
     volumes:
