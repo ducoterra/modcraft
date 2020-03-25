@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: minecraft-1-12-2
-        image: ducoterra/modcraft_1.12.2:0.0.20
+        image: hub.ducoterra.net/ducoterra/modcraft_1.12.2:0.0.20
         ports:
         - containerPort: 25565
         volumeMounts:
